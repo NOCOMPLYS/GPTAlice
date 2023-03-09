@@ -12,7 +12,7 @@ openai.api_key = "YOUR_API_KEY"
 @app.route("/", methods=["POST"])
 def main():
     print(logging.info(request.json))
-    response ={
+    response = {
         "version": request.json["version"],
         "session": request.json["session"],
         "response": {
@@ -21,7 +21,8 @@ def main():
     }
 
     req = request.json
-    response["responce"]["text"] = "Здравствуй, хозяин."
+    if req["session"]["new"]:
+        response["responce"]["text"] = "Здравствуйте. Чем могу помочь?"
     
     return json.dumps(response)
 
