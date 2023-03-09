@@ -9,7 +9,7 @@ logging.basicConfig(level=logging.DEBUG)
 openai.api_key = "YOUR_API_KEY"
 
 # Define your Flask route
-@app.route('/', methods=['POST'])
+@app.route("/", methods=["POST"])
 def main():
     print(logging.info(request.json))
     response ={
@@ -21,8 +21,7 @@ def main():
     }
 
     req = request.json
-    if req["session"]["new"]:
-        response["responce"]["text"] = "Здравствуй, хозяин."
+    response["responce"]["text"] = "Здравствуй, хозяин."
     
     return json.dumps(response)
 
