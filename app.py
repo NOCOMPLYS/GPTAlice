@@ -42,7 +42,7 @@ def index():
 
     # Send the generated text back to the user
     return text
-
+"""
 if __name__ == '__main__':
     app.run(debug=True)
-"""
+
