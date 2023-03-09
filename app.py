@@ -20,7 +20,7 @@ def main():
             "end_session": False
         }
     }
-    
+
     if req["session"]["new"]:
         response["responce"]["text"] = "Здравствуйте. Чем могу помочь?"
     
@@ -42,4 +42,5 @@ def generate_response(prompt):
 
 
 if __name__ == '__main__':
+    print("HELLO, WORLD!")
     app.run(debug=True)
