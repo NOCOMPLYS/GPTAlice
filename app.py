@@ -11,7 +11,8 @@ openai.api_key = "YOUR_API_KEY"
 # Define your Flask route
 @app.route("/", methods=["POST"])
 def main():
-    logging.info(request.json)
+    req = json.loads(request.data)
+    print(req)
     response = {
         "version": request.json["version"],
         "session": request.json["session"],
@@ -19,8 +20,7 @@ def main():
             "end_session": False
         }
     }
-
-    req = request.json
+    
     if req["session"]["new"]:
         response["responce"]["text"] = "Здравствуйте. Чем могу помочь?"
     
