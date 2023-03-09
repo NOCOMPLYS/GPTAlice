@@ -11,8 +11,7 @@ openai.api_key = "YOUR_API_KEY"
 # Define your Flask route
 @app.route('/', methods=['POST'])
 def main():
-    logging.info(request.json)
-    """
+    print(logging.info(request.json))
     response ={
         "version": request.json["version"],
         "session": request.json["session"],
@@ -22,27 +21,25 @@ def main():
     }
 
     req = request.json
-    if req["session"]
-    """
+    if req["session"]["new"]:
+        response["responce"]["text"] = "Здравствуй, хозяин."
+    
+    return json.dumps(response)
 
 
-"""
-def index():
-    # Get the user's voice input
-    audio_data = request.data
 
-    # Convert the audio to text using OpenAI
+def generate_response(prompt):
     response = openai.Completion.create(
         engine="davinci",
-        prompt=audio_data,
-        max_tokens=60,
+        prompt=prompt,
+        max_tokens=150,
+        n=1,
+        stop=None,
         temperature=0.5,
     )
-    text = response.choices[0].text.strip()
 
-    # Send the generated text back to the user
-    return text
-"""
+    return response.choices[0].text.strip()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
-
