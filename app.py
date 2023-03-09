@@ -11,6 +11,7 @@ openai.api_key = "YOUR_API_KEY"
 # Define your Flask route
 @app.route("/", methods=["POST"])
 def main():
+    logging.info(request.json)
     response = {
         "version": request.json["version"],
         "session": request.json["session"],
