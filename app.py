@@ -11,6 +11,7 @@ openai.api_key = "YOUR_API_KEY"
 # Define your Flask route
 @app.route('/', methods=['POST', 'GET', 'DELETE', 'PUT', 'HEAD'])
 def resp():
+    print('Request income!')
     text = request.json.get('request', {}).get('command')
     response_text = f'Вы сказали {text}'
     response = {
