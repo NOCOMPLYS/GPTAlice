@@ -9,8 +9,8 @@ logging.basicConfig(level=logging.DEBUG)
 openai.api_key = "YOUR_API_KEY"
 
 # Define your Flask route
-@app.route("/alice", methods=["POST"])
-def main():
+@app.route('/alice', methods=['POST'])
+def resp():
     text = request.json.get('request', {}).get('command')
     response_text = f'Вы сказали {text}'
     response = {
