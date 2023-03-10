@@ -1,5 +1,5 @@
 import openai, logging
-from flask import Flask, request
+from flask import Flask, request, make_response
 import json
 
 app = Flask(__name__)
@@ -21,7 +21,7 @@ def resp():
         "session": request.json['session']
     }
     
-    return json.dumps(response)
+    return make_response(response, 200)
 
 @app.route('/', methods=['GET'])
 def hw():
