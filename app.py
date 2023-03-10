@@ -14,8 +14,8 @@ def main():
     text = request.json.get('request', {}).get('command')
     response_text = f'Вы сказали {text}'
     response = {
-        "version": request.json["version"],
-        "session": request.json["session"],
+        #"version": request.json["version"],
+        #"session": request.json["session"],
         "response": {
             "text": response_text,
             "end_session": False
@@ -38,6 +38,4 @@ def generate_response(prompt):
 
     return response.choices[0].text.strip()
 
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+app.run(debug=True, host='0.0.0.0', port=5000)
