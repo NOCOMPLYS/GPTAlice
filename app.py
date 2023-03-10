@@ -25,7 +25,7 @@ def resp():
     
     return json.dumps(response)
 
-@app.route('/', methods='GET')
+@app.route('/', methods=['GET'])
 def hw():
     return "Hello, World!"
 
