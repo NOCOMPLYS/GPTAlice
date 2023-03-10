@@ -11,19 +11,18 @@ openai.api_key = "YOUR_API_KEY"
 # Define your Flask route
 @app.route("/", methods=["POST"])
 def main():
-    logging.info(request.json)
+    text = request.json.get('request', {}).get('command')
+    response_text = f'Вы сказали {text}'
     response = {
         "version": request.json["version"],
         "session": request.json["session"],
         "response": {
+            "text": response_text,
             "end_session": False
         }
     }
-    req = request.json
-    if req["session"]["new"]:
-        response["responce"]["text"] = "Здравствуйте. Чем могу помочь?"
     
-    return Flask.make_response(dict=response)
+    return response
 
 
 
