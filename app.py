@@ -1,5 +1,6 @@
 import openai, logging
 from flask import Flask, request
+import json
 
 app = Flask(__name__)
 
@@ -9,10 +10,10 @@ logging.basicConfig(level=logging.DEBUG)
 openai.api_key = "YOUR_API_KEY"
 
 # Define your Flask route
-@app.route('/', methods=['POST', 'GET', 'DELETE', 'PUT', 'HEAD'])
+@app.route('/post', methods=['POST'])
 def resp():
     print('Request income!')
-    text = request.json.get('request', {}).get('command')
+    text = request.json['request']['command']
     response_text = f'Вы сказали {text}'
     response = {
         "response": {
@@ -20,10 +21,9 @@ def resp():
             "end_session": False
         },
         "version": "1.0"
-        #"session": request.json["session"],
     }
     
-    return response
+    return json.dumps(response)
 
 
 
