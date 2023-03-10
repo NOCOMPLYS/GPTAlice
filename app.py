@@ -18,6 +18,7 @@ def resp():
             "end_session": False
         },
         "version": "1.0"
+        "session": request.json['session']
     }
     
     return json.dumps(response)
