@@ -17,7 +17,7 @@ def resp():
             "text": response_text,
             "end_session": False
         },
-        "version": "1.0"
+        "version": "1.0",
         "session": request.json['session']
     }
     
