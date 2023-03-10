@@ -12,7 +12,6 @@ openai.api_key = "YOUR_API_KEY"
 @app.route("/", methods=["POST"])
 def main():
     text = request.json.get('request', {}).get('command')
-    print(text)
     response_text = f'Вы сказали {text}'
     response = {
         "version": "1.0",
@@ -39,4 +38,6 @@ def generate_response(prompt):
 
     return response.choices[0].text.strip()
 
+print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 app.run(debug=True, host='0.0.0.0', port=5000, ssl_context="adhoc")
+print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
