@@ -12,9 +12,10 @@ openai.api_key = "YOUR_API_KEY"
 @app.route("/", methods=["POST"])
 def main():
     text = request.json.get('request', {}).get('command')
+    print(text)
     response_text = f'Вы сказали {text}'
     response = {
-        #"version": request.json["version"],
+        "version": "1.0",
         #"session": request.json["session"],
         "response": {
             "text": response_text,
