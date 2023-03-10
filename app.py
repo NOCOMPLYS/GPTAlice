@@ -1,4 +1,4 @@
-import openai, logging, json
+import openai, logging
 from flask import Flask, request
 
 app = Flask(__name__)
@@ -14,12 +14,12 @@ def main():
     text = request.json.get('request', {}).get('command')
     response_text = f'Вы сказали {text}'
     response = {
-        "version": "1.0",
-        #"session": request.json["session"],
         "response": {
             "text": response_text,
             "end_session": False
-        }
+        },
+        "version": "1.0"
+        #"session": request.json["session"],
     }
     
     return response
@@ -38,6 +38,4 @@ def generate_response(prompt):
 
     return response.choices[0].text.strip()
 
-print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
 app.run(debug=True, host='0.0.0.0', port=5000, ssl_context="adhoc")
-print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
