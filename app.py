@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.DEBUG)
 openai.api_key = "YOUR_API_KEY"
 
 # Define your Flask route
-@app.route('/post', methods=['POST'])
+@app.route('/', methods=['POST'])
 def resp():
     print('Request income!')
     text = request.json['request']['command']
