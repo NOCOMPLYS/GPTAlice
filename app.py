@@ -13,7 +13,7 @@ def resp():
     if 'request' in event and 'original_utterance' in event['request'] and len(event['request']['original_utterance']) > 0:
         user_id = event['session']['session_id']
         user_input = event['request']['original_utterance']
-        response_text = "Вы сказали" + user_input
+        response_text = "Вы сказали: " + f'"{user_input}"'
         return {
             'version': event['version'],
             'session': event['session'],
@@ -36,4 +36,4 @@ def resp():
         }
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000, ssl_context="adhoc")
+    app.run(debug=True, host='0.0.0.0', port=5000, ssl_context=('cert.pem', 'key.pem'))
