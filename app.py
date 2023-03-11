@@ -9,19 +9,32 @@ logging.basicConfig(level=logging.DEBUG)
 # Define your Flask route
 @app.route('/', methods=['POST'])
 def resp():
-    print('Request income!')
-    text = request.json['request']['command']
-    response_text = f'Вы сказали {text}'
-    response = {
-        "response": {
-            "text": response_text,
-            "end_session": False
-        },
-        "version": "1.0",
-        "session": request.json['session']
-    }
+    event = request.json
+    if 'request' in event and 'original_utterance' in event['request'] and len(event['request']['original_utterance']) > 0:
+        text = request.json['request']['command']
+        response_text = f'Вы сказали {text}'
+        response = {
+            "response": {
+                "text": response_text,
+                "end_session": False
+            },
+            "version": "1.0",
+            "session": event['session']
+        }
+
+        return make_response(response, 200)
     
-    return make_response(response, 200)
+    else:
+        # If no input was provided, just return a welcome message
+        return {
+            'version': event['version'],
+            'session': event['session'],
+            'response': {
+                'text': 'Джарвис на связи!',
+                'tts': 'Джарвис на связи!',
+                'end_session': False
+            },
+        }
 
 @app.route('/', methods=['GET'])
 def hw():
